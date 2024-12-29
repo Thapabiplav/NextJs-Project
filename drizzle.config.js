@@ -5,6 +5,6 @@ import {defineConfig} from 'drizzle-kit'
   out:'./drizzle',
   dialect:'postgresql',
   dbCredentials:{
-    url:''
+    url:'postgresql://postgres.jwxvhjvuvmiiuedsgwev:Mayday!02@aws-0-ap-south-1.pooler.supabase.com:6543/postgres'
   }
 })

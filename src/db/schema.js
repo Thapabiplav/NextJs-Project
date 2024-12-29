@@ -1,10 +1,11 @@
-import { text } from "drizzle-orm/mysql-core"
-import { pgTable,serial } from "drizzle-orm/pg-core"
+import { sql } from "drizzle-orm"
+import { pgTable, serial, varchar, text, timestamp } from "drizzle-orm/pg-core"
 
-
-
-pgTable('recipes'),{
-  id:serial('id').primaryKey(),
-  name:varchar("name",{length:50}.notNull().unique()),
-  description:text('description').notNull(),
-}
+export const recipes = pgTable('recipes', {
+  id: serial('id').primaryKey(),
+  name: varchar("name", { length: 50 }).notNull().unique(), // Correct order of chaining
+  description: text('description').notNull(),
+  subname: varchar('subname', { length: 100 }),
+  createdat: timestamp('created_at').default(sql`CURRENT_TIMESTAMP`),
+  updatedat: timestamp('updated_at').default(sql`CURRENT_TIMESTAMP`)
+})
